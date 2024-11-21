@@ -1,0 +1,9 @@
+name: nn_env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - tensorflow
+  - pytorch
+  - torchvision
+  - torchaudio

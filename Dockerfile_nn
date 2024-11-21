@@ -1,0 +1,20 @@
+# Use the official Miniconda image as the base
+FROM continuumio/miniconda3
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the environment file for TensorFlow and PyTorch
+COPY environment_nn.yml .
+
+# Create the Conda environment
+RUN conda env create -f environment_nn.yml && \
+    conda clean -afy && \
+    conda init bash
+
+# Activate the environment
+RUN echo "source activate pytorch_tensorflow_env" > ~/.bashrc
+ENV PATH /opt/conda/envs/pytorch_tensorflow_env/bin:$PATH
+
+# Command to keep the container running
+CMD ["tail", "-f", "/dev/null"]
